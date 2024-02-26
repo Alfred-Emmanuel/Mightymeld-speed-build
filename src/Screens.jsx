@@ -18,10 +18,17 @@ export const possibleTileContents = [
 
 export function StartScreen({ start }) {
   return (
-    <div>
-      <button onClick={start} className="bg-gray-400 text-white p-3">
-        Play
-      </button>
+    <div className="flex justify-center items-center w-full h-screen">
+      <div className="flex flex-col gap-8 justify-center items-center bg-pink-100 w-[80%] h-[55%]">
+        <h1 className="text-pink-600 text-3xl font-bold">Memory</h1>
+        <p className="text-pink-600">Flip over tiles looking for pairs</p>
+        <button
+          onClick={start}
+          className="bg-gradient-to-t from-pink-600 to-pink-400 text-white w-20 h-10 rounded-full"
+        >
+          Play
+        </button>
+      </div>
     </div>
   );
 }
@@ -109,12 +116,19 @@ export function PlayScreen({ end }) {
 
   return (
     <>
-      <div>
-        {getTiles(6).map((tile, i) => (
-          <Tile key={i} flip={() => flip(i)} {...tile} />
-        ))}
+      <div className="flex flex-col gap-10 justify-center h-screen w-full items-center">
+        <p className="font-medium text-blue-600">
+          Tries{"  "}
+          <span className="bg-blue-200 px-2 rounded-md">{tryCount}</span>
+        </p>
+        <div className="w-[80%] bg-indigo-50 flex justify-center items-center p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-4 justify-center items-center w-full">
+            {getTiles(16).map((tile, i) => (
+              <Tile key={i} flip={() => flip(i)} {...tile} />
+            ))}
+          </div>
+        </div>
       </div>
-      {tryCount}
     </>
   );
 }
